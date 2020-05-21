@@ -1,0 +1,25 @@
+public String clockInfo(@Context UriInfo uri, 
+	                            @Context HttpHeaders headers) {
+	        return "<html>" +
+	                "<head>" +
+	                "<title>Restful Clock Service</title>" +
+	                "<meta http-equiv='Content-Type' content='text/html'>" +
+	                "</head>" +
+	                "<body>" +
+	                "<p>Hello, This RESTful service resides at <b>" + uri.getAbsolutePath() + "</b></p>" +
+	                "<p>The request headers are </p> "    +                            
+	                "<div align='center'>" + writeHeaders(headers) + "</div>" +	                
+	                "    </body>\n" +
+	                "</html>";	        
+	    }
+	   
+	   private String writeHeaders(HttpHeaders headers) {
+	        StringBuilder buf = new StringBuilder();
+	        for (String header: headers.getRequestHeaders().keySet()) {
+	            buf.append(header);
+	            buf.append(":");
+	            buf.append(headers.getRequestHeader(header));
+	            buf.append("<br>");
+	        }
+	        return buf.toString();
+	        }
